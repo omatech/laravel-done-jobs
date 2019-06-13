@@ -1,0 +1,64 @@
+{
+    "name": "omatech/laravel-done-jobs",
+    "description": "Quick way to save jobs that have been created without any problem. The antithesis of failed jobs.",
+    "keywords": [
+        "omatech",
+        "laravel-done-jobs"
+    ],
+    "homepage": "https://github.com/omatech/laravel-done-jobs",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Adrià Roca",
+            "email": "aroca@omatech.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Nil Font",
+            "email": "nfont@omatech.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Christian Bohollo",
+            "email": "cbohollo@omatech.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "5.8.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.8.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omatech\\LaravelDoneJobs\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Omatech\\LaravelDoneJobs\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Omatech\\LaravelDoneJobs\\LaravelDoneJobsServiceProvider"
+            ],
+            "aliases": {
+                "LaravelDoneJobs": "Omatech\\LaravelDoneJobs\\LaravelDoneJobsFacade"
+            }
+        }
+    }
+}
