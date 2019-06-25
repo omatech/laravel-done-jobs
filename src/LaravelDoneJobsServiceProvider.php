@@ -2,7 +2,10 @@
 
 namespace Omatech\LaravelDoneJobs;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Queue\Events\JobProcessed;
 
 class LaravelDoneJobsServiceProvider extends ServiceProvider
 {
@@ -11,50 +14,18 @@ class LaravelDoneJobsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        /*
-         * Optional methods to load your package assets
-         */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-done-jobs');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-done-jobs');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadMigrationsFrom(__DIR__.'/migrations');
+        $this->commands(ReJobCommand::class);
 
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('laravel-done-jobs.php'),
-            ], 'config');
-
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-done-jobs'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/laravel-done-jobs'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-done-jobs'),
-            ], 'lang');*/
-
-            // Registering package commands.
-            // $this->commands([]);
-        }
-    }
-
-    /**
-     * Register the application services.
-     */
-    public function register()
-    {
-        // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-done-jobs');
-
-        // Register the main class to use with the facade
-        $this->app->singleton('laravel-done-jobs', function () {
-            return new LaravelDoneJobs;
+        Queue::after(function (JobProcessed $event) {
+            DoneJob::create([
+                'connection' => $event->job->getConnectionName(),
+                'queue' => $event->job->getQueue(),
+                'job' => $event->job->payload()['data']['commandName'],
+                'payload' => json_encode($event->job->payload()),
+                'attempts' => $event->job->attempts(),
+                'done_at' => Carbon::now()
+            ]);
         });
     }
 }

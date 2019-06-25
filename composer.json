@@ -27,38 +27,18 @@
     ],
     "require": {
         "php": "^7.1",
-        "illuminate/support": "5.8.*"
-    },
-    "require-dev": {
-        "orchestra/testbench": "3.8.*",
-        "phpunit/phpunit": "^7.0"
+        "illuminate/support": "5.7.*|5.8.*"
     },
     "autoload": {
         "psr-4": {
             "Omatech\\LaravelDoneJobs\\": "src"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Omatech\\LaravelDoneJobs\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
-    },
-    "config": {
-        "sort-packages": true
-    },
     "extra": {
         "laravel": {
             "providers": [
                 "Omatech\\LaravelDoneJobs\\LaravelDoneJobsServiceProvider"
-            ],
-            "aliases": {
-                "LaravelDoneJobs": "Omatech\\LaravelDoneJobs\\LaravelDoneJobsFacade"
-            }
+            ]
         }
     }
 }

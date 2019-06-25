@@ -1,8 +1,6 @@
 # Laravel Done Jobs
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/omatech/laravel-done-jobs.svg?style=flat-square)](https://packagist.org/packages/omatech/laravel-done-jobs)
-[![Build Status](https://img.shields.io/travis/omatech/laravel-done-jobs/master.svg?style=flat-square)](https://travis-ci.org/omatech/laravel-done-jobs)
-[![Quality Score](https://img.shields.io/scrutinizer/g/omatech/laravel-done-jobs.svg?style=flat-square)](https://scrutinizer-ci.com/g/omatech/laravel-done-jobs)
 [![Total Downloads](https://img.shields.io/packagist/dt/omatech/laravel-done-jobs.svg?style=flat-square)](https://packagist.org/packages/omatech/laravel-done-jobs)
 
 Quick way to save jobs that have been created without any problem. The antithesis of failed jobs.
@@ -16,27 +14,17 @@ composer require omatech/laravel-done-jobs
 
 ## Usage
 
+Run migrate to create the done_jobs table.
+
 ``` php
-// Usage description here
+php artisan migrate
 ```
 
-### Testing
+Use the command to push a done job into the queue again.
 
-``` bash
-composer test
+``` php
+php artisan queue:rejob {id/all}
 ```
-
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-### Security
-
-If you discover any security related issues, please email aroca@omatech.com instead of using the issue tracker.
 
 ## Credits
 
