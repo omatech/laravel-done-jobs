@@ -7,3 +7,5 @@ vendor
 /vendor/
 /.phpunit.cache/
 /.docker/evidence/
+
+!/composer.lock
