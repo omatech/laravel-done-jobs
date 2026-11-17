@@ -1,44 +1,66 @@
 {
-    "name": "omatech/laravel-done-jobs",
-    "description": "Quick way to save jobs that have been created without any problem. The antithesis of failed jobs.",
-    "keywords": [
-        "omatech",
-        "laravel-done-jobs"
-    ],
-    "homepage": "https://github.com/omatech/laravel-done-jobs",
-    "license": "MIT",
-    "type": "library",
-    "authors": [
-        {
-            "name": "Adrià Roca",
-            "email": "aroca@omatech.com",
-            "role": "Developer"
-        },
-        {
-            "name": "Nil Font",
-            "email": "nfont@omatech.com",
-            "role": "Developer"
-        },
-        {
-            "name": "Christian Bohollo",
-            "email": "cbohollo@omatech.com",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": "^7.1|^8.0",
-        "illuminate/support": "5.7.*|5.8.*|6.*|7.*|8.*|9.*|10.*|11.*|12.*|^13.0"
+  "name": "omatech/laravel-done-jobs",
+  "description": "Quick way to save jobs that have been created without any problem. The antithesis of failed jobs.",
+  "keywords": [
+    "omatech",
+    "laravel-done-jobs"
+  ],
+  "homepage": "https://github.com/omatech/laravel-done-jobs",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Adrià Roca",
+      "email": "aroca@omatech.com",
+      "role": "Developer"
     },
-    "autoload": {
-        "psr-4": {
-            "Omatech\\LaravelDoneJobs\\": "src"
-        }
+    {
+      "name": "Nil Font",
+      "email": "nfont@omatech.com",
+      "role": "Developer"
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Omatech\\LaravelDoneJobs\\LaravelDoneJobsServiceProvider"
-            ]
-        }
+    {
+      "name": "Christian Bohollo",
+      "email": "cbohollo@omatech.com",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": "^7.1|^8.0",
+    "illuminate/support": "5.7.*|5.8.*|6.*|7.*|8.*|9.*|10.*|11.*|12.*|^13.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Omatech\\LaravelDoneJobs\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Omatech\\LaravelDoneJobs\\LaravelDoneJobsServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "8.5.12"
+    },
+    "allow-plugins": false,
+    "sort-packages": true,
+    "github-protocols": [
+      "https"
+    ]
+  },
+  "require-dev": {
+    "phpunit/phpunit": "13.4.6",
+    "orchestra/testbench": "^11.3.0"
+  },
+  "scripts": {
+    "test": "phpunit",
+    "check": [
+      "@test",
+      "@composer validate --no-check-publish",
+      "@composer audit --locked"
+    ]
+  }
 }
